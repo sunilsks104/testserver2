@@ -11,10 +11,11 @@ const createTask = async (req, res) => {
   res.status(201).json({ task });
 };
 
-const getTask = async (req, res, next) => {
+const getTask = async (req, res) => {
   // const { id: taskID } = req.params;
-  const { rfidnumber } = req.body;
-  const task = await Task.findOne({ rfidnumber: rfidnumber });
+  const { id: taskID } = req.params;
+  // const { rfidnumber } = req.body;
+  const task = await Task.findOne({ rfidnumber: taskID });
   // if (!task) {
   //   return next(createCustomError(`No task with id : ${rfidnumber}`, 404));
   // }
