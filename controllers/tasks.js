@@ -13,7 +13,7 @@ const createTask = async (req, res) => {
 
 const getTask = async (req, res, next) => {
   const { id: taskID } = req.params;
-  const task = await Task.findOne({ rfidnumber: taskID });
+  const task = await Task.findOne({ rfidnumbes: taskID });
   if (!task) {
     return next(createCustomError(`No task with id : ${taskID}`, 404));
   }
