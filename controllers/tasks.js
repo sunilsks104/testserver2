@@ -13,7 +13,7 @@ const createTask = async (req, res) => {
 
 const getTask = async (req, res, next) => {
   const { id: taskID } = req.params;
-  const task = await Task.findOne({ _id: taskID });
+  const task = await Task.findOne({ rfidnumber: taskID });
   if (!task) {
     return next(createCustomError(`No task with id : ${taskID}`, 404));
   }
@@ -22,7 +22,7 @@ const getTask = async (req, res, next) => {
 };
 const deleteTask = async (req, res, next) => {
   const { id: taskID } = req.params;
-  const task = await Task.findOneAndDelete({ _id: taskID });
+  const task = await Task.findOneAndDelete({ rfidnumber: taskID });
   if (!task) {
     return next(createCustomError(`No task with id : ${taskID}`, 404));
   }
@@ -31,7 +31,7 @@ const deleteTask = async (req, res, next) => {
 const updateTask = async (req, res, next) => {
   const { id: taskID } = req.params;
 
-  const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
+  const task = await Task.findOneAndUpdate({ rfidnumber: taskID }, req.body, {
     new: true,
     runValidators: true,
   });
