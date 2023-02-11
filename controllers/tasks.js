@@ -11,6 +11,14 @@ const createTask = async (req, res) => {
   res.status(201).json({ task });
 };
 
+const createTaskbyparams = async (req, res) => {
+  console.log(req.body);
+  console.log(req.params);
+  // res.status(200).json({ Message: 'Done' });
+
+  const task = await Task.create(req.params);
+  res.status(201).json({ task });
+};
 const getTask = async (req, res) => {
   // const { id: taskID } = req.params;
   const { id: taskID } = req.params;
@@ -51,4 +59,5 @@ module.exports = {
   getTask,
   updateTask,
   deleteTask,
+  createTaskbyparams,
 };
